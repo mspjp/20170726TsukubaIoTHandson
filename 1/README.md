@@ -139,7 +139,7 @@ print("start")
 # ループ処理
 while True:
     print(".", end="")
-    time.sleep(1) # 1秒待つ
+    time.sleep(0.1) # 0.1秒待つ
     if GPIO.input(5): #GPIO5の入力状態を取得 押すと電源につながり3.3Vが入力される回路なので押されると1になる
         print("pressed")
         break # ループを抜ける
@@ -186,20 +186,22 @@ import time             # sleepを呼ぶためtimeライブラリを読み込み
 # GPIOの初期化
 # ここにコードを書いてください。
 
-# 状態を示す変数 0消灯、1で点灯
-led_status = 0
-# ボタンの状態を示す変数 押されている場合1
-button_status = 0
+# 状態を示す変数 Falseで消灯、Trueで点灯
+led_status = False
+# ボタンの状態を示す変数 押されている場合True
+button_status = False
 
 print("start")
-while True:
-    time.sleep(0.1) # 0.1秒待つ(チャタリング対策)
-    # ボタンの状態を取得し ボタンが押された場合はled_statusを切り替えLEDの点灯状態を更新してください。
-    # 最後にbutton_statusを更新してください。
-
-print("end")
-# 終了処理
-GPIO.cleanup()
+try: # 今回はループを抜ける処理がないのでCtrl+Cなどで強制終了します。その際に例外処理をしないとcleanup()が呼ばれないため例外処理をしています。
+    while True:
+        time.sleep(0.1) # 0.1秒待つ(チャタリング対策)
+        # ボタンの状態を取得し ボタンが押された場合はled_statusを切り替えLEDの点灯状態を更新してください。
+        # 最後にbutton_statusを更新してください。
+finally:
+    # 例外が発生すると最後にここが呼ばれます
+    print("end")
+    # 終了処理
+    GPIO.cleanup()
 ```
 
 この課題を実装したものはled.pyです。
