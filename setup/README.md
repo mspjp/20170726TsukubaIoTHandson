@@ -16,13 +16,54 @@ sudo raspi-config
 
 パッケージをインストール
 ```
+sudo curl -sL https://deb.nodesource.com/setup | sudo bash -
 sudp apt-get update
-sudo apt-get install python3 python3-pip
+sudo apt-get install python3 python3-pip git libboost-python-dev nodejs
 sudo pip3 install --upgrade pip
 sudo pip3 install jupyter rpi.gpio
+
 ```
 
 
+
+Jupyter Notebookの初期設定
+```
+sudo python3 -m IPython kernelspec install-self
+jupyter notebook --generate-config
+```
+
+パスワード生成
+パスワードはmspjpにしてください
+```
+python3 -c 'from notebook.auth import passwd;print(passwd())'
+```
+
+出力されたshaをメモしてください。
+
+表示されたコンフィグファイルを以下のように編集する
+```
+c.NotebookApp.ip = '0.0.0.0'
+c.NotebookApp.password = 'sha1:56531de49faa:bc140dd230ba1913ce5768371acece59d190d3dc'
+
+```
+
+jupyter 自動起動スクリプト
+[参考](http://qiita.com/taka4sato/items/2c3397ff34c440044978)
+
+```
+sudo touch /start_jupyter.sh
+sudo chmod 777 /start_jupyter.sh
+sudo cat "/usr/local/bin/jupyter notebook" > /start_jupyter.sh
+```
+
+/etc/rc.local
+```
+su - pi /start_jupyter.sh &
+exit 0
+```
+
+再起動後jupyter notebookにアクセスできることを確認してください。
+最後にライブラリなどをホームに展開したら完了です。
 
 
 # ビルド済みSDK及びライブラリファイルについて
