@@ -21,7 +21,7 @@ sudp apt-get update
 sudo apt-get install python3 python3-pip git libboost-python-dev nodejs
 sudo pip3 install --upgrade pip
 sudo pip3 install jupyter rpi.gpio
-
+sudo npm install -g iothub-explorer
 ```
 
 
