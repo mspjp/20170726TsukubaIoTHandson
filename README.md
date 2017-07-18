@@ -13,7 +13,7 @@
 
 ### [#2 Azure IoT Hubセットアップ](./2/README.md)
 
-### #3 Azure IoT Hubにデータを送る
+### [#3 Azure IoT Hubにデータを送る](./3/README.md)
 * ボタンを押してクラウドにデータを送る
 * 送ったデータを別の端末などから確認する
 

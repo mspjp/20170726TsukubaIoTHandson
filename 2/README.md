@@ -1,4 +1,6 @@
 # #2 Azure IoT Hubセットアップ
+この章ではAzureのアクティベーションとAzureIoTHubの作成を行います。
+
 
 [https://www.microsoftazurepass.com/](https://www.microsoftazurepass.com/)にアクセスし、配布したAzurePassのコードでAzurePassをアクティベーションしてください。
 
