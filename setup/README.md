@@ -24,6 +24,13 @@ sudo pip3 install jupyter rpi.gpio
 sudo npm install -g iothub-explorer
 ```
 
+I2Cの設定
+sudo raspi-config
+からInterface->I2CでEnableにする
+再起動後
+```
+sudo apt-get install python3-smbus
+```
 
 
 Jupyter Notebookの初期設定
