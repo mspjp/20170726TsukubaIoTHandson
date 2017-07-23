@@ -83,6 +83,7 @@ except: # 例外が発生したら終了
     print("EXIT")
 
 ```
+このコードの全体はsend_message.pyで添付します。
 このコードを実行すると10秒おきにcount:1, count:2と言ったメッセージを送信します。
 
 ## AzureIoTHubに送信されたメッセージを確認する
@@ -159,6 +160,9 @@ json_str = json.dumps(status_map)
 client.send_reported_state(json_str, len(json_str), send_reported_state_callback, 0)
 
 ```
+
+このサンプルの全体はsend_property.pyです。
+
 実際にAzureIoTHub上に届いているかを確認するにはポータルにアクセスし、AzureIoTHubの管理ページから右側「デバイスエクスプローラー」を選択し、対象のデバイスを選択、「デバイスツイン」というボタンを押すと表示されます。
 
 ![img](./img/01.png)

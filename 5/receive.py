@@ -1,11 +1,16 @@
-#5 クラウドからデバイスを制御
-この章ではAzureIoTHub側からメッセージを受け取りデバイス側でLEDを光らせます。
+# ライブラリの読み込み
+import iothub_client
+import time
+from iothub_client import IoTHubClient, IoTHubTransportProvider
+from iothub_client import IoTHubMessage, IoTHubError
 
-## Azure IoTHubからメッセージを受け取る
-クラウドから送信されたメッセージを受信するには受信用のコールバック関数を用意し、AzureIoTHubクライアントのインスタンスに登録します。
-以下にコールバック関数と修正したiothub_client_init関数を示します。
+# Azure IoTHubに接続するためのプロトコル HTTPやMQTTなど MQTTのほうがセンサー値などを送るのには向いている
+PROTOCOL = IoTHubTransportProvider.MQTT
+# メッセージを送信する時のタイムアウト時間[ms]
+MESSAGE_TIMEOUT = 10000
+# Device Explorerで確認した接続文字列
+CONNECTION_STRING = "<接続文字列>"
 
-```python
 # メッセージを受信したときに呼び出されるコールバック関数
 def receive_message_callback(message, user_context):
     # 受信したメッセージを文字列に変換
@@ -30,10 +35,6 @@ def iothub_client_init():
     client.set_message_callback(receive_message_callback, 0)
     return client
 
-```
-
-また、今回はメッセージを受信して処理を行うため送信処理は削除します。
-```python
 client = iothub_client_init()
 try: # 例外処理
     while True:
@@ -42,6 +43,3 @@ except: # 例外が発生したら終了
     import traceback
     traceback.print_exc() #例外情報を出力
     print("EXIT")
-```
-
-この受信したメッセージを表示するサンプルプログラムはreceive.pyで添付します。
