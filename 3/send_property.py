@@ -30,10 +30,9 @@ def iothub_client_init():
 def send_reported_state_callback(status_code, user_context):
     print("status code:" + str(status_code))
 
-# 送信した回数を保持するカウンター
-counter = 0
 # クライアントのインスタンスを作成
 client = iothub_client_init()
+print("RUN")
 
 # 現在の状態をマップで用意
 status_map = {"statsu":"OK", "temp":12.3}

@@ -29,6 +29,7 @@ GPIO.setup(5, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
 # ボタンの状態を示す変数 押されている場合True
 button_status = False
 client = iothub_client_init()
+print("RUN")
 try:
     while True:
         time.sleep(0.1)
