@@ -84,4 +84,6 @@ try: # 例外処理
 except: # 例外が発生したら終了
     import traceback
     traceback.print_exc() #例外情報を出力
+    # i2c終了処理
+    bus.close()
     print("EXIT")

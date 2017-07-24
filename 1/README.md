@@ -99,6 +99,11 @@ GPIO.cleanup()
 >その為GPIO.outputで2番目の引数に1を指定するとHighレベルである3.3Vが、0を指定するとLowレベルである0Vが出力されます。
 >また、GPIO.outputは0,1の代わりにFalse, Ture出力を指定することも出来ます。
 
+> #終了処理
+> GPIOや同じピンを利用するI2Cなどの機能の終了処理を行わないと次回GPIO利用時に警告が出ます。
+> This channel is already in use, continuing anyway.  Use GPIO.setwarnings(False) to disable warnings.
+> このハンズオンの範囲内では警告が出ても問題ないので無視してください。
+
 ## ボタンの接続とプルアップ、プルダウン
 小型のボタン（タクトスイッチ）は以下のようなもので様々なところで利用されています。
 

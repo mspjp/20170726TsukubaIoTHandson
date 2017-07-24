@@ -6,6 +6,9 @@
 以下にコールバック関数と修正したiothub_client_init関数を示します。
 
 ```python
+# 追加でライブラリ読み込み
+from iothub_client import IoTHubMessageDispositionResult
+
 # メッセージを受信したときに呼び出されるコールバック関数
 def receive_message_callback(message, user_context):
     # 受信したメッセージを文字列に変換
@@ -45,3 +48,15 @@ except: # 例外が発生したら終了
 ```
 
 この受信したメッセージを表示するサンプルプログラムはreceive.pyで添付します。
+
+このプログラムを実行したあと、iothub-explorerで
+
+```
+iothub-explorer send <ここにデバイスのIDを入れてください> <ここにメッセージを入れてください> --login "<ここにサービス用の接続文字列を入れてください>"
+```
+のようにメッセージを送信するとコールバック関数が呼び出され、Jupyter上の出力に送信したメッセージが表示されると思います。
+
+## [演習]メッセージを受け取ってLEDを光らせる
+1章を参考にONというメッセージを受け取ったらLEDを光らせ、OFFというメッセージを受け取ったらLEDを消すプログラムを作成してみてください。
+
+GPIO2にLEDを接続した場合で実装したコードはled_onoff.pyです。

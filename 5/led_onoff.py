@@ -4,6 +4,7 @@ import time
 from iothub_client import IoTHubClient, IoTHubTransportProvider
 from iothub_client import IoTHubMessage, IoTHubError
 from iothub_client import IoTHubMessageDispositionResult
+import RPi.GPIO as GPIO
 
 # Azure IoTHubに接続するためのプロトコル HTTPやMQTTなど MQTTのほうがセンサー値などを送るのには向いている
 PROTOCOL = IoTHubTransportProvider.MQTT
@@ -17,9 +18,12 @@ def receive_message_callback(message, user_context):
     # 受信したメッセージを文字列に変換
     message_text = message.get_bytearray().decode('utf-8')
 
-    # 受信したメッセージに応じて何か処理をする
-    # ここではお試しに標準出力にメッセージを出力する
-    print(message_text)
+    # LEDの点灯、消灯処理
+    # ON, OFF以外は無視する
+    if message_text == "ON":
+        GPIO.output(2, 1)
+    elif message_text == "OFF":
+        GPIO.output(2, 0)
 
     # 処理した場合はACCEPTEDを返す
     return IoTHubMessageDispositionResult.ACCEPTED
@@ -35,6 +39,12 @@ def iothub_client_init():
     # 第二引数はコールバック関数のuser_contextに渡される
     client.set_message_callback(receive_message_callback, 0)
     return client
+
+# GPIO初期化
+GPIO.setmode(GPIO.BCM)
+GPIO.setup(2, GPIO.OUT)
+# 初期状態はLEDOFF
+GPIO.output(2, 0)
 
 client = iothub_client_init()
 print("RUN")

@@ -60,7 +60,7 @@ TODO 図
 
 pythonでi2c通信を行うにはsmbusライブラリを使います。
 
-```
+```python
 #ライブラリ読み込み
 import smbus
 import time
@@ -95,7 +95,15 @@ raw_value = (data0 << 8) | data1
 # 温度に変換
 temperature = (175.72 * raw_value / 65536) - 46.85
 print("Temperature:" + str(temperature))
+
+# i2c終了処理
+bus.close()
 ```
+
+>i2cデバイスが接続されているかを確認するにはアドレススキャンツールを使います
+>i2cdetect -y 1
+>実行すると検出された場合はアドレスが、見つからない場合は--が表示されます。
+>![img](./05.png)
 
 ## [課題]温湿度センサーの値を読み出し、AzureIoTHubに送信する
 上記の読み出すサンプルと3章の10秒おきにメッセージを送信するプログラムを参考に作成してみてください。
@@ -220,4 +228,6 @@ for i in range(10):
     print("X:" + str(x) + " Y" + str(y) + " Z" + str(z))
 
     time.sleep(1)
+# i2c終了処理
+bus.close()
 ```
