@@ -32,3 +32,5 @@
 * 1/ ~ 5/:それぞれ#1~#5の内容を格納
 * setup:ビルド済みのライブラリと環境構築の手順書
 * JupyterNoteBook.md: JupyterNoteBookの簡単な使い方
+
+[アンケートはこちら](https://1drv.ms/xs/s!AluBpRRYH8E_mll3bTqxKFd6ESWt)
