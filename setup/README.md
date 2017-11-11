@@ -16,7 +16,7 @@ sudo raspi-config
 
 パッケージをインストール
 ```
-sudo curl -sL https://deb.nodesource.com/setup | sudo bash -
+curl -sL https://deb.nodesource.com/setup_8.x | sudo -E bash -
 sudp apt-get update
 sudo apt-get install python3 python3-pip git libboost-python-dev nodejs
 sudo pip3 install --upgrade pip
